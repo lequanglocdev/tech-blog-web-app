@@ -1,24 +1,28 @@
-const { json } = require("body-parser")
-const Auth = require("../models/auth")
+const User = require("../models/user");
+const bcryptjs = require("bcryptjs");
+const { errorHandler } = require("../utils/error");
+const register = async (req, res,next) => {
+  // console.log(req.body)
+  const { username, email, password } = req.body;
+  if ((!username || !email || !password )) {
+    next(errorHandler(400,"All fields are required"))
+  }
 
-const register = async(req,res) =>{
-  const { email, password, username } = req.body;
+  const hashedPassword = bcryptjs.hashSync(password,10)
+  const newUser = new User({
+    username,
+    email,
+    password:hashedPassword
+  });
+  try {
 
-
-    if(!username || !email || !password){
-     return res.status(400),json({
-      sucess: false,
-        mes: "Missing input "
-      })
-    }
-    ///
-    const newUser = await Auth.create(req.body)
-    return res.status(200).json({
-      sucess: newUser ? true : false,
-      mes: newUser ? "Register is successfully. Please go login" : "Something went wrong"
-    })
-}
+    await newUser.save();
+    res.status(200).json("register Successful ");
+  } catch (error) {
+    next(error)
+  }
+};
 
 module.exports = {
-  register
-}
+  register,
+};

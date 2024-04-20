@@ -1,8 +1,24 @@
+
+import {BrowserRouter,Route,Routes} from "react-router-dom"
+import Home from "./page/Home";
+import About from "./page/About";
+import Register from "./page/Register";
+import Login from "./page/Login";
+import DashBoard from "./page/DashBoard";
+import Header from "./components/Header";
+
 function App() {
   return (
-    <div className="text-rose-500">
-      <h1>quang loc</h1>
-    </div>
+    <BrowserRouter>
+      <Header/>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/about" element={<About/>}/>
+          <Route path="/register" element={<Register/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/dashboard" element={<DashBoard/>}/>
+        </Routes>
+    </BrowserRouter>
   );
 }
 
