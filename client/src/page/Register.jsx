@@ -1,7 +1,36 @@
+/* eslint-disable no-unused-vars */
 
-import { Button, Label, TextInput } from "flowbite-react";
-import { Link } from "react-router-dom";
+import { Alert, Button, Label, TextInput } from "flowbite-react";
+import { useState } from "react";
+import { Link,useNavigate } from "react-router-dom";
 const Register = () => {
+
+  const [formData,setFormData] = useState({})
+  const [errorMessage,setErrorMessage] = useState(null)
+  const [loading,setLoading] = useState(false)
+
+  const navigate = useNavigate()
+
+  const handleSubmit = async(e) =>{
+    e.preventDefault()
+      if(!formData.username || !formData.email || !formData.password){
+        return setErrorMessage("Không được để trống")
+      }
+      try {
+        const res = await fetch("/api/auth/register",{
+          method: "POST",
+          headers:{"Content-Type":"application/json"},
+          body:JSON.stringify(formData)
+        })
+        const data = await res.json()
+        console.log("data",data)
+      } catch (error) {
+        console.log(error)
+      }
+  }
+  const handleOnChange = (e) =>{
+      setFormData({...formData , [e.target.id]: e.target.value.trim()})
+  }
   return (
     <div className="min-h-screen mt-20">
     <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-6">
@@ -22,20 +51,20 @@ const Register = () => {
       </div>
       {/* right */}
       <div className="flex-1">
-        <form className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <div>
             <Label value="Họ tên của bạn" />
-            <TextInput type="text" placeholder="Tên" id="username" />
+            <TextInput type="text" placeholder="Tên" id="username"  onChange={handleOnChange} />
           </div>
 
           <div>
             <Label value="emailcủa bạn" />
-            <TextInput type="text" placeholder="Email" id="username" />
+            <TextInput type="text" placeholder="Email" id="email"  onChange={handleOnChange} />
           </div>
 
           <div>
             <Label value="mật khẩu của bạn" />
-            <TextInput type="text" placeholder="Mật khẩu" id="username" />
+            <TextInput type="password" placeholder="Mật khẩu" id="password"  onChange={handleOnChange} />
           </div>
           <Button gradientDuoTone="purpleToBlue" outline type="submit">
             Đăng ký
@@ -47,6 +76,11 @@ const Register = () => {
             Đăng nhập
           </Link>
         </div>
+        {
+          errorMessage && (
+            <Alert/>
+          )
+        }
       </div>
     </div>
   </div>
