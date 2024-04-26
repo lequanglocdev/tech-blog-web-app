@@ -3,32 +3,41 @@
 import { Alert, Button, Label, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
+import {loginError,loginStart,loginSuccess} from "../redux/user/userSlice"
+import { useDispatch, useSelector } from "react-redux";
+import AuthGg from "../components/AuthGg";
 const Login = () => {
 
   const [formData,setFormData] = useState({})
-  const [errorMessage,setErrorMessage] = useState(null)
-  const [loading,setLoading] = useState(false)
+  const {loading,error:errorMessage} = useSelector(state => state.user)
 
+
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const handleSubmit = async(e) =>{
     e.preventDefault()
       if( !formData.email || !formData.password){
-        return setErrorMessage("Không được để trống")
+        return dispatch(loginError("Không được để trống"))
       }
       try {
+        dispatch(loginStart())
         const res = await fetch("/api/auth/login",{
           method: "POST",
           headers:{"Content-Type":"application/json"},
           body:JSON.stringify(formData)
         })
         const data = await res.json()
-        console.log("data",data)
+        // console.log("data",data)
+        if(data.success === false){
+          dispatch(loginError(data.message))
+        }
         if(res.ok){
+          dispatch(loginSuccess(data))
           navigate('/')
         }
       } catch (error) {
-        console.log(error)
+        dispatch(loginError(errorMessage))
       }
   }
   const handleOnChange = (e) =>{
@@ -68,6 +77,7 @@ const Login = () => {
           <Button gradientDuoTone="purpleToBlue" outline type="submit">
             Đăng ký
           </Button>
+          <AuthGg/>
         </form>
         <div className="flex gap-2 text-sm mt-5">
           <span>Chưa có tài khoản</span>

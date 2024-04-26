@@ -3,6 +3,7 @@ import { Navbar } from "flowbite-react";
 import { Link, useLocation } from "react-router-dom";
 import { IoMdSearch } from "react-icons/io";
 import { FaMoon } from "react-icons/fa6";
+// import {useSelector} from 'react-redux'
 const Header = () => {
   const path = useLocation().pathname;
   return (

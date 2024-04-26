@@ -3,6 +3,7 @@
 import { Alert, Button, Label, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
+import AuthGg from "../components/AuthGg";
 const Register = () => {
 
   const [formData,setFormData] = useState({})
@@ -69,6 +70,7 @@ const Register = () => {
           <Button gradientDuoTone="purpleToBlue" outline type="submit">
             Đăng ký
           </Button>
+          <AuthGg/>
         </form>
         <div className="flex gap-2 text-sm mt-5">
           <span>Đã có tài khoản</span>
