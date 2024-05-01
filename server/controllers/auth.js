@@ -24,7 +24,7 @@ const register = async (req, res, next) => {
   }
 };
 const login = async (req, res, next) => {
-  // console.log(req.body)
+  console.log(req.body)
   const { email, password } = req.body;
   if (!email || !password) {
     next(errorHandler(400, "All fields are required"));
@@ -41,7 +41,7 @@ const login = async (req, res, next) => {
     const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
     const { password: pass, ...rest } = validUser._doc;
     res.status(200).cookie('access_token',token,{httpOnly:true}).json(rest)
-    console.log(res.password)
+    // console.log(res.password)
   } catch (error) {
     next(error);
   }

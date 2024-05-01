@@ -1,7 +1,8 @@
-const { testUser } = require("../controllers/user");
+const {updateUser} = require("../controllers/user")
+const {veryfyUser} = require("../utils/veryfyUser")
+const router = require("express").Router()
 
-const router = require("express").Router();
+router.put("/update/:userId",veryfyUser,updateUser)
 
-router.get('/test',testUser)
 
 module.exports = router
