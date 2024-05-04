@@ -4,6 +4,6 @@ const router = require("express").Router()
 
 router.put("/update/:userId",veryfyUser,updateUser)
 router.delete('/delete/:userId', veryfyUser, deleteUser);
-router.post('/signout', signout);
+
 
 module.exports = router

@@ -145,9 +145,9 @@ const DashProfile = () => {
       dispatch(deleteUserFail(error.message));
     }
   };
-  const handleSignout = async () => {
+  const handleLognout = async () => {
     try {
-      const res = await fetch('/api/user/signout', {
+      const res = await fetch('/api/auth/logout', {
         method: 'POST',
       });
       const data = await res.json();
@@ -233,12 +233,12 @@ const DashProfile = () => {
           type="submit"
           gradientDuoTone="purpleToBlue"
           outline
-          // disabled={loading || imageFileUploading}
+          disabled={loading || imageFileUploading}
         >
           Update
-          {/* {loading ? 'Loading...' : 'Update'} */}
+          {loading ? 'Loading...' : 'Update'}
         </Button>
-        {/* {createUser.isAdmin && (
+        {createUser.isAdmin && (
           <Link to={'/create-post'}>
             <Button
               type='button'
@@ -248,11 +248,11 @@ const DashProfile = () => {
               Create a post
             </Button>
           </Link>
-        )} */}
+        )}
       </form>
       <div className="text-red-500 flex justify-between mt-5">
         <span onClick={() => setShowModal(true)} className="cursor-pointer">Delete Account</span>
-        <span onClick={handleSignout}  className="cursor-pointer">Sign Out</span>
+        <span onClick={handleLognout}  className="cursor-pointer">Sign Out</span>
       </div>
       {updateUserSuccess && (
         <Alert color="success" className="mt-5">

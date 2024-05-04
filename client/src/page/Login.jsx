@@ -75,7 +75,7 @@ const Login = () => {
             <TextInput type="password" placeholder="Mật khẩu" id="password"  onChange={handleOnChange} />
           </div>
           <Button gradientDuoTone="purpleToBlue" outline type="submit">
-            Đăng ký
+            Đăng nhập
           </Button>
           <AuthGg/>
         </form>
