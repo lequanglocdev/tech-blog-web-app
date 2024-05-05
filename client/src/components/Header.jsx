@@ -7,7 +7,7 @@ import { Avatar, Dropdown } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useSelector ,useDispatch} from "react-redux";
 import {toggleTheme} from "../redux/theme/themeSlice"
-import { loginSuccess } from "../redux/user/userSlice";
+import { logoutSuccess } from "../redux/user/userSlice";
 const Header = () => {
   const path = useLocation().pathname;
   const { createUser } = useSelector((state) => state.user);
@@ -28,14 +28,14 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      const res = await fetch('/api/user/logout', {
+      const res = await fetch('/api/auth/logout', {
         method: 'POST',
       });
       const data = await res.json();
       if (!res.ok) {
         console.log(data.message);
       } else {
-        dispatch(loginSuccess());
+        dispatch((logoutSuccess()));
       }
     } catch (error) {
       console.log(error.message);

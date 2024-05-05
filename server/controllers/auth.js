@@ -32,13 +32,13 @@ const login = async (req, res, next) => {
   try {
     const validUser = await User.findOne({ email });
     if (!validUser) {
-      next(errorHandler(404, "User not found"));
+      next(errorHandler(404, "Email người dùng không tồn tại"));
     }
     const validPassword = bcryptjs.compareSync(password, validUser.password);
     if (!validPassword) {
-      return next(errorHandler(404, "Invalid password"));
+      return next(errorHandler(404, "Sai mật khẩu"));
     }
-    const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: validUser._id ,isAdmin:validUser.isAdmin}, process.env.JWT_SECRET);
     const { password: pass, ...rest } = validUser._doc;
     res
       .status(200)
@@ -54,7 +54,7 @@ const loginGoogle = async (req, res, next) => {
   try {
     const user = await User.findOne({ email });
     if (user) {
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      const token = jwt.sign({ id: user._id ,isAdmin:user.isAdmin}, process.env.JWT_SECRET);
       const { password, ...rest } = user._doc;
       res
         .status(200)
@@ -76,7 +76,7 @@ const loginGoogle = async (req, res, next) => {
         profilePicture: googlePhotoUrl,
       });
       await newUser.save();
-      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
+      const token = jwt.sign({ id: newUser._id,isAdmin:newUser.isAdmin }, process.env.JWT_SECRET);
       const { password, ...rest } = newUser._doc;
       res
         .status(200)
@@ -94,7 +94,7 @@ const logout = (req,res,next) =>{
     res
       .clearCookie('access_token')
       .status(200)
-      .json('User has been signed out');
+      .json('Đăng xuất thành công');
   } catch (error) {
     next(error);
   }

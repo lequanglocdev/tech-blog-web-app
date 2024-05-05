@@ -7,6 +7,8 @@ import DashBoard from "./page/DashBoard";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
+import AdminPrivateRoute from "./components/AdminPrivateRoute";
+import CreatePost from "./page/CreatePost";
 function App() {
   return (
     <BrowserRouter>
@@ -18,6 +20,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={<DashBoard />} />
+        </Route>
+        <Route element={<AdminPrivateRoute />}>
+          <Route path='/create-post' element={<CreatePost />} />
+         
         </Route>
       </Routes>
       <Footer />

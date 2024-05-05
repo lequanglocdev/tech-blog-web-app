@@ -4,7 +4,7 @@ import { Sidebar } from "flowbite-react";
 import { HiUser, HiArrowSmRight } from "react-icons/hi";
 // import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { signoutSuccess } from '../redux/user/userSlice';
+import { logoutSuccess } from '../redux/user/userSlice';
 const DashSideBar = () => {
   const [tab, setTab] = useState("");
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const DashSideBar = () => {
       if (!res.ok) {
         console.log(data.message);
       } else {
-        dispatch(signoutSuccess());
+        dispatch(logoutSuccess());
       }
     } catch (error) {
       console.log(error.message);
