@@ -6,6 +6,6 @@ const router = require("express").Router()
 
 
 router.post('/create', veryfyUser, create)
-router.post('/getpost', getPost)
+router.get('/getpost', getPost)
 
 module.exports = router
