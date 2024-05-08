@@ -52,6 +52,18 @@ const DashSideBar = () => {
               </Sidebar.Item>
             </Link>
           )}
+           {createUser && createUser.isAdmin && (
+            <Link to='/dashboard?tab=users'>
+              <Sidebar.Item
+                active={tab === "users"}
+                icon={HiUser}
+                label={"User"}
+                labelColor="dark"
+              >
+                User
+              </Sidebar.Item>
+            </Link>
+          )}
           <Link to='/dashboard?tab=profile'>
             <Sidebar.Item
               active={tab === 'profile'}
