@@ -43,7 +43,7 @@ useEffect(() => {
 
     fetchPost();
   } catch (error) {
-    console.log(error.message);
+    console.log("lỗi",error.message);
   }
 }, [postId]);
 
@@ -95,6 +95,8 @@ const handleSubmit = async (e) => {
       body: JSON.stringify(formData),
     });
     const data = await res.json();
+    console.log("response",data)
+    
     if (!res.ok) {
       setPublishError(data.message);
       return;
@@ -111,7 +113,7 @@ const handleSubmit = async (e) => {
   return (
     <div className='p-3 max-w-3xl mx-auto min-h-screen'>
     <h1 className='text-center text-3xl my-7 font-semibold'>Update post</h1>
-    <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
+    <form className='flex flex-col gap-4'onSubmit={handleSubmit}>
       <div className='flex flex-col gap-4 sm:flex-row justify-between'>
         <TextInput
           type='text'

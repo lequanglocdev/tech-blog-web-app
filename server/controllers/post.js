@@ -101,6 +101,7 @@ const updatepost = async(req,res,next) =>{
       { new: true }
     );
     res.status(200).json(updatedPost);
+    console.log(res)
   } catch (error) {
     next(error);
   }

@@ -10,6 +10,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import AdminPrivateRoute from "./components/AdminPrivateRoute";
 import CreatePost from "./page/CreatePost";
 import UpadatePost from "./page/UpadatePost";
+import Post from "./page/Post";
 function App() {
   return (
     <BrowserRouter>
@@ -25,8 +26,9 @@ function App() {
         <Route element={<AdminPrivateRoute />}>
           <Route path='/create-post' element={<CreatePost />} />
           <Route path='/update-post/:postId' element={<UpadatePost />} />
-         
         </Route>
+        <Route path="/post/:postSlug" element={<Post />} />
+
       </Routes>
       <Footer />
     </BrowserRouter>
