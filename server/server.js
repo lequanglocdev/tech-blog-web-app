@@ -7,6 +7,7 @@ const  cookieParser = require("cookie-parser")
 const authRoute = require("./routes/auth")
 const userRoute = require("./routes/user")
 const postRoute = require("./routes/post")
+const commentRoute = require("./routes/comment")
 const app = express();
 const port = process.env.PORT || 8888;
 app.use(cors());
@@ -25,6 +26,7 @@ app.listen(port, () => {
 app.use("/api/auth",authRoute)
 app.use("/api/user",userRoute)
 app.use("/api/post",postRoute)
+app.use("/api/comment",commentRoute)
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
