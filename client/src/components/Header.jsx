@@ -64,6 +64,8 @@ const Header = () => {
           placeholder="Tìm kiếm..."
           rightIcon={IoMdSearch}
           className="hidden lg:inline"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </form>
       

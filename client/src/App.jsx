@@ -11,6 +11,7 @@ import AdminPrivateRoute from "./components/AdminPrivateRoute";
 import CreatePost from "./page/CreatePost";
 import UpadatePost from "./page/UpadatePost";
 import Post from "./page/Post";
+import Search from "./page/Search";
 function App() {
   return (
     <BrowserRouter>
@@ -20,6 +21,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path='/search' element={<Search />} />
         <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={<DashBoard />} />
         </Route>
