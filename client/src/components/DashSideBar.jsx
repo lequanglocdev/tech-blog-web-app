@@ -1,12 +1,15 @@
 // import React from 'react'
 import { useEffect, useState } from "react";
 import { Sidebar } from "flowbite-react";
-import { HiUser, HiArrowSmRight } from "react-icons/hi";
-// import { Link } from "react-router-dom";
+import { FaRegUser } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { logoutSuccess } from "../redux/user/userSlice";
 import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
+import { FaFileInvoice } from "react-icons/fa6";
+import { LuUserCircle2 } from "react-icons/lu";
+import { IoLogOutOutline } from "react-icons/io5";
+import { IoMdClipboard } from "react-icons/io";
+import { logoutSuccess } from "../redux/user/userSlice";
 const DashSideBar = () => {
   const [tab, setTab] = useState("");
   const dispatch = useDispatch();
@@ -20,9 +23,9 @@ const DashSideBar = () => {
     }
   }, [location.search]);
 
-  const handleLognout = async () => {
+  const handleLogout = async () => {
     try {
-      const res = await fetch("/api/user/logout", {
+      const res = await fetch("/api/auth/logout", {
         method: "POST",
       });
       const data = await res.json();
@@ -38,48 +41,58 @@ const DashSideBar = () => {
   return (
     <Sidebar className="w-full wd:w-56">
       <Sidebar.Items>
-        <Sidebar.ItemGroup className="flex flex-col gap-1" >
-          {/* <Link to='/dashboard?tab=profile'/> */}
+        <Sidebar.ItemGroup className="flex flex-col gap-1">
+          
+        {createUser && createUser.isAdmin && (
+            <Link to='/dashboard?tab=dash'>
+              <Sidebar.Item
+                active={tab === 'dash' || !tab}
+                icon={IoMdClipboard}
+                as='div'
+              >
+                Trang quản trị
+              </Sidebar.Item>
+            </Link>
+          )}
+
           {createUser && createUser.isAdmin && (
-            <Link to='/dashboard?tab=post'>
+            <Link to="/dashboard?tab=post">
               <Sidebar.Item
                 active={tab === "post"}
-                icon={HiUser}
-                label={"User"}
+                icon={FaFileInvoice}
                 labelColor="dark"
               >
-                Dashboard
+               Quản lý bài viết
               </Sidebar.Item>
             </Link>
           )}
-           {createUser && createUser.isAdmin && (
-            <Link to='/dashboard?tab=users'>
+          {createUser && createUser.isAdmin && (
+            <Link to="/dashboard?tab=users">
               <Sidebar.Item
                 active={tab === "users"}
-                icon={HiUser}
-                label={"User"}
+                icon={FaRegUser}
                 labelColor="dark"
               >
-                User
+                Quản lý thành viên
               </Sidebar.Item>
             </Link>
           )}
-          <Link to='/dashboard?tab=profile'>
+          <Link to="/dashboard?tab=profile">
             <Sidebar.Item
-              active={tab === 'profile'}
-              icon={HiUser}
-              label={createUser.isAdmin ? 'Admin' : 'User'}
-              labelColor='dark'
-              as='div'
+              active={tab === "profile"}
+              icon={LuUserCircle2}
+              label={createUser.isAdmin ? "Admin" : "User"}
+              labelColor="dark"
+              as="div"
             >
-              Profile
+                Cá nhân
             </Sidebar.Item>
           </Link>
           <Sidebar.Item
-            active
-            icon={HiArrowSmRight}
+            className="cursor-pointer"
+            icon={IoLogOutOutline}
             labelColor="dark"
-            onClick={handleLognout}
+            onClick={handleLogout}
           >
             Log out
           </Sidebar.Item>

@@ -25,21 +25,21 @@ export default function FooterCom() {
           </div>
           <div className="grid grid-cols-2 gap-8 mt-4 sm:grid-cols-3 sm:gap-6">
             <div>
-              <Footer.Title title="About" />
+              <Footer.Title title="Giơi thiệu" />
               <Footer.LinkGroup col>
                 <Footer.Link>About1</Footer.Link>
                 <Footer.Link>About2</Footer.Link>
               </Footer.LinkGroup>
             </div>
             <div>
-              <Footer.Title title="Follow " />
+              <Footer.Title title="Theo dõi " />
               <Footer.LinkGroup col>
                 <Footer.Link>Follow1</Footer.Link>
                 <Footer.Link href="#">Follow2</Footer.Link>
               </Footer.LinkGroup>
             </div>
             <div>
-              <Footer.Title title="Contact" />
+              <Footer.Title title="Liên hệ" />
               <Footer.LinkGroup col>
                 <Footer.Link href="#">Contact1</Footer.Link>
                 <Footer.Link href="#">Contact2</Footer.Link>
@@ -59,7 +59,7 @@ export default function FooterCom() {
             <Footer.Icon href="#" icon={BsInstagram} />
             <Footer.Icon href="#" icon={BsTwitter} />
             <Footer.Icon
-              href="https://github.com/sahandghavidel"
+              href="https://github.com/lequanglocdev"
               icon={BsGithub}
             />
             <Footer.Icon href="#" icon={BsDribbble} />

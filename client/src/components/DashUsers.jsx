@@ -70,12 +70,12 @@ const DashUsers = () => {
         <>
           <Table hoverable className="shadow-md">
             <Table.Head>
-              <Table.HeadCell>Date created</Table.HeadCell>
-              <Table.HeadCell>User image</Table.HeadCell>
-              <Table.HeadCell>Username</Table.HeadCell>
+              <Table.HeadCell>Ngày tham gia</Table.HeadCell>
+              <Table.HeadCell>Ảnh đại diện</Table.HeadCell>
+              <Table.HeadCell>Họ tên</Table.HeadCell>
               <Table.HeadCell>Email</Table.HeadCell>
-              <Table.HeadCell>Admin</Table.HeadCell>
-              <Table.HeadCell>Delete</Table.HeadCell>
+              <Table.HeadCell>Quản tri viên</Table.HeadCell>
+              <Table.HeadCell>Xóa</Table.HeadCell>
              
             </Table.Head>
             {users.map((user) => (
@@ -99,9 +99,9 @@ const DashUsers = () => {
                   <Table.Cell>{user.email}</Table.Cell>
                   <Table.Cell>
                     {user.isAdmin ? (
-                      <FaCheck className="text-green-500" />
+                      <FaCheck className="text-green-500 " />
                     ) : (
-                      <FaTimes className="text-red-500" />
+                      <FaTimes className="text-red-500 " />
                     )}
                   </Table.Cell>
                   <Table.Cell>

@@ -75,13 +75,13 @@ const DashPost = () => {
         <>
           <Table hoverable className="shadow-md">
             <Table.Head>
-              <Table.HeadCell>Date updated</Table.HeadCell>
-              <Table.HeadCell>Post image</Table.HeadCell>
-              <Table.HeadCell>Post title</Table.HeadCell>
-              <Table.HeadCell>Category</Table.HeadCell>
-              <Table.HeadCell>Delete</Table.HeadCell>
+              <Table.HeadCell>Ngày tạo</Table.HeadCell>
+              <Table.HeadCell>Hình ảnh</Table.HeadCell>
+              <Table.HeadCell>Tiêu đề</Table.HeadCell>
+              <Table.HeadCell>Loại</Table.HeadCell>
+              <Table.HeadCell>Xóa</Table.HeadCell>
               <Table.HeadCell>
-                <span>Edit</span>
+                <span>Sửa</span>
               </Table.HeadCell>
             </Table.Head>
             {post.map((post) => (

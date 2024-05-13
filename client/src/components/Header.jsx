@@ -55,13 +55,13 @@ const Header = () => {
         className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white"
       >
         <span className="px-2 py-1 bg-gradient-to-r from-blue-500 via-blue-400 to-violet-400 rounded-lg text-white">
-          Blog
+          Blog_web
         </span>
       </Link>
       <form onSubmit={handleSubmit}>
         <TextInput
           type="text"
-          placeholder="Search..."
+          placeholder="Tìm kiếm..."
           rightIcon={IoMdSearch}
           className="hidden lg:inline"
         />
@@ -69,13 +69,13 @@ const Header = () => {
       
       <Navbar.Collapse>
         <Navbar.Link active={path === "/"} as={"div"}>
-          <Link to="/">Home</Link>
+          <Link to="/"><p className="text-base">Trang chủ</p></Link>
         </Navbar.Link>
         <Navbar.Link active={path === "/project"} as={"div"}>
-          <Link to="/dashboard">DashBoard</Link>
+          <Link to="/dashboard?tab=dash"><p className="text-base">Trang quản trị</p></Link>
         </Navbar.Link>
         <Navbar.Link active={path === "/about"} as={"div"}>
-          <Link to="/about">About</Link>
+          <Link to="/about"><p className="text-base">Giới thiệu</p></Link>
         </Navbar.Link>
       </Navbar.Collapse>
       <div className="flex gap-4">
@@ -100,7 +100,7 @@ const Header = () => {
               </span>
             </Dropdown.Header>
             <Link to={"/dashboard?tab=profile"}>
-              <Dropdown.Item>Profile</Dropdown.Item>
+              <Dropdown.Item>Hồ sơ của bạn</Dropdown.Item>
             </Link>
             <Dropdown.Divider />
             <Dropdown.Item onClick={handleLogout}>Đăng xuất</Dropdown.Item>
