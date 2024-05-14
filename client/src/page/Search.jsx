@@ -107,10 +107,10 @@ const Search = () => {
         <form className='flex flex-col gap-8' onSubmit={handleSubmit}>
           <div className='flex   items-center gap-2'>
             <label className='whitespace-nowrap font-semibold'>
-              Search Term:
+              Tìm kiếm
             </label>
             <TextInput
-              placeholder='Search...'
+              placeholder='Tìm kiếm...'
               id='searchTerm'
               type='text'
               value={sidebarData.searchTerm}
@@ -118,37 +118,37 @@ const Search = () => {
             />
           </div>
           <div className='flex items-center gap-2'>
-            <label className='font-semibold'>Sort:</label>
+            <label className='font-semibold'>Sắp xếp:</label>
             <Select onChange={handleChange} value={sidebarData.sort} id='sort'>
-              <option value='desc'>Latest</option>
-              <option value='asc'>Oldest</option>
+              <option value='desc'>Bài viết gần đây </option>
+              <option value='asc'>Bài viết trước</option>
             </Select>
           </div>
           <div className='flex items-center gap-2'>
-            <label className='font-semibold'>Category:</label>
+            <label className='font-semibold'>Thể loại:</label>
             <Select
               onChange={handleChange}
               value={sidebarData.category}
               id='category'
             >
-              <option value='uncategorized'>Uncategorized</option>
+              <option value='uncategorized'>Chưa phân loại</option>
               <option value='reactjs'>React.js</option>
               <option value='nextjs'>Next.js</option>
               <option value='javascript'>JavaScript</option>
             </Select>
           </div>
           <Button type='submit' outline gradientDuoTone='purpleToPink'>
-            Apply Filters
+            Lọc bài viết
           </Button>
         </form>
       </div>
       <div className='w-full'>
         <h1 className='text-3xl font-semibold sm:border-b border-gray-500 p-3 mt-5 '>
-          Posts results:
+          Bài viết
         </h1>
         <div className='p-7 flex flex-wrap gap-4'>
           {!loading && posts.length === 0 && (
-            <p className='text-xl text-gray-500'>No posts found.</p>
+            <p className='text-xl text-gray-500'>Không tìm thấy bài viết nào.</p>
           )}
           {loading && <p className='text-xl text-gray-500'>Loading...</p>}
           {!loading &&
@@ -159,7 +159,7 @@ const Search = () => {
               onClick={handleShowMore}
               className='text-teal-500 text-lg hover:underline p-7 w-full'
             >
-              Show More
+              Xem thêm
             </button>
           )}
         </div>

@@ -24,14 +24,14 @@ const Home = () => {
           to="/search"
           className="text-xs sm:text-sm text-teal-500 font-bold hover:underline"
         >
-          View all posts
+          Xem tất cả bài viết
         </Link>
       </div>
 
       <div className="max-w-12xl mx-auto p-2 ml-9  flex flex-col justify-center gap-8 ">
         {posts && posts.length > 0 && (
           <div className="flex flex-col gap-6">
-            <h2 className="text-2xl font-semibold text-center">Recent Posts</h2>
+            <h2 className="text-2xl font-semibold text-center">Bài viết gần đây</h2>
             <div className="flex flex-wrap gap-10">
               {posts.map((post) => (
                 <PostCard key={post._id} post={post} />
@@ -41,7 +41,7 @@ const Home = () => {
               to={"/search"}
               className="text-lg text-teal-500 hover:underline text-center"
             >
-              View all posts
+              Xem tất cả
             </Link>
           </div>
         )}
