@@ -12,7 +12,7 @@ const app = express();
 const port = process.env.PORT || 8888;
 app.use(cors());
 
-const __dirname = path.resolve()
+
 // đọc hiểu data mà client gửi lên
 app.use(express.json());
 
