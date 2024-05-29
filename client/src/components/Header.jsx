@@ -1,41 +1,40 @@
 import { Button, TextInput } from "flowbite-react";
 import { Navbar } from "flowbite-react";
-import { Link, useLocation,useNavigate  } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IoMdSearch } from "react-icons/io";
 import { FaMoon, FaSun } from "react-icons/fa6";
 import { Avatar, Dropdown } from "flowbite-react";
 import { useEffect, useState } from "react";
-import { useSelector ,useDispatch} from "react-redux";
-import {toggleTheme} from "../redux/theme/themeSlice"
+import { useSelector, useDispatch } from "react-redux";
+import { toggleTheme } from "../redux/theme/themeSlice";
 import { logoutSuccess } from "../redux/user/userSlice";
 const Header = () => {
   const path = useLocation().pathname;
   const { createUser } = useSelector((state) => state.user);
   const { theme } = useSelector((state) => state.theme);
   const location = useLocation();
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
-    const searchTermFromUrl = urlParams.get('searchTerm');
+    const searchTermFromUrl = urlParams.get("searchTerm");
     if (searchTermFromUrl) {
       setSearchTerm(searchTermFromUrl);
     }
-    
   }, [location.search]);
 
   const handleLogout = async () => {
     try {
-      const res = await fetch('/api/auth/logout', {
-        method: 'POST',
+      const res = await fetch("/api/auth/logout", {
+        method: "POST",
       });
       const data = await res.json();
       if (!res.ok) {
         console.log(data.message);
       } else {
-        dispatch((logoutSuccess()));
+        dispatch(logoutSuccess());
       }
     } catch (error) {
       console.log(error.message);
@@ -44,7 +43,7 @@ const Header = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const urlParams = new URLSearchParams(location.search);
-    urlParams.set('searchTerm', searchTerm);
+    urlParams.set("searchTerm", searchTerm);
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
   };
@@ -68,55 +67,63 @@ const Header = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </form>
-      
+
       <Navbar.Collapse>
         <Navbar.Link active={path === "/"} as={"div"}>
-          <Link to="/"><p className="text-base">Trang chủ</p></Link>
+          <Link to="/">
+            <p className="text-base">Trang chủ</p>
+          </Link>
         </Navbar.Link>
-        <Navbar.Link active={path === "/project"} as={"div"}>
-          <Link to="/dashboard?tab=dash"><p className="text-base">Trang quản trị</p></Link>
-        </Navbar.Link>
+        {createUser && createUser.isAdmin ? (
+          <Link to="/dashboard?tab=profile">
+            <p className="text-base">Trang quản trị</p>
+          </Link>
+        ) : (
+          <Link to="/create-post">
+            <p className="text-base">Viết bài</p>
+          </Link>
+        )}
         <Navbar.Link active={path === "/about"} as={"div"}>
-          <Link to="/about"><p className="text-base">Giới thiệu</p></Link>
+          <Link to="/about">
+            <p className="text-base">Giới thiệu</p>
+          </Link>
         </Navbar.Link>
       </Navbar.Collapse>
       <div className="flex gap-4">
-        <Button onClick={()=>dispatch(toggleTheme())}>
-
-          {theme === 'light' ? <FaSun/> : <FaMoon/>}
+        <Button onClick={() => dispatch(toggleTheme())}>
+          {theme === "light" ? <FaSun /> : <FaMoon />}
         </Button>
-        
+
         <div className="flex gap-4">
-        {createUser ? (
-          <Dropdown
-            arrowIcon={false}
-            inline
-            label={
-              <Avatar alt="user" img={createUser.profilePicture} rounded />
-            }
-          >
-            <Dropdown.Header>
-              <span className="block text-sm">@{createUser.username}</span>
-              <span className="block text-sm font-medium truncate">
-                {createUser.email}
-              </span>
-            </Dropdown.Header>
-            <Link to={"/dashboard?tab=profile"}>
-              <Dropdown.Item>Hồ sơ của bạn</Dropdown.Item>
+          {createUser ? (
+            <Dropdown
+              arrowIcon={false}
+              inline
+              label={
+                <Avatar alt="user" img={createUser.profilePicture} rounded />
+              }
+            >
+              <Dropdown.Header>
+                <span className="block text-sm">@{createUser.username}</span>
+                <span className="block text-sm font-medium truncate">
+                  {createUser.email}
+                </span>
+              </Dropdown.Header>
+              <Link to={"/dashboard?tab=profile"}>
+                <Dropdown.Item>Hồ sơ của bạn</Dropdown.Item>
+              </Link>
+              <Dropdown.Divider />
+              <Dropdown.Item onClick={handleLogout}>Đăng xuất</Dropdown.Item>
+            </Dropdown>
+          ) : (
+            <Link to="/login">
+              <Button gradientDuoTone="purpleToBlue" outline>
+                Đăng nhập
+              </Button>
             </Link>
-            <Dropdown.Divider />
-            <Dropdown.Item onClick={handleLogout}>Đăng xuất</Dropdown.Item>
-          </Dropdown>
-        ) : (
-          <Link to="/login">
-            <Button gradientDuoTone="purpleToBlue" outline>
-              Đăng nhập
-            </Button>
-          </Link>
-        )}
-        <Navbar.Toggle />
-      </div>
-        <Navbar.Toggle />
+          )}
+          <Navbar.Toggle />
+        </div>
       </div>
     </Navbar>
   );
