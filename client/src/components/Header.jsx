@@ -11,6 +11,7 @@ import { logoutSuccess } from "../redux/user/userSlice";
 const Header = () => {
   const path = useLocation().pathname;
   const { createUser } = useSelector((state) => state.user);
+
   const { theme } = useSelector((state) => state.theme);
   const location = useLocation();
   const [searchTerm, setSearchTerm] = useState("");
@@ -53,9 +54,7 @@ const Header = () => {
         to="/"
         className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white"
       >
-        <span className="px-2 py-1 bg-gradient-to-r from-blue-500 via-blue-400 to-violet-400 rounded-lg text-white">
-          Blog_web
-        </span>
+       { theme === "light" ?  <img src="../public/logowhite.png" className="w-16 h-16 object-contain"/> : <img src="../public/images-removebg-preview.png" className="w-16 h-16object-contain"/>}
       </Link>
       <form onSubmit={handleSubmit}>
         <TextInput

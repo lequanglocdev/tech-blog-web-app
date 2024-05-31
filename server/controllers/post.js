@@ -2,9 +2,7 @@ const Post = require("../models/post");
 const { errorHandler } = require("../utils/error");
 
 const create =async (req,res,next) =>{
-  if (!req.user.isAdmin) {
-    return next(errorHandler(403, 'You are not allowed to create a post'));
-  }
+  
   if (!req.body.title || !req.body.content) {
     return next(errorHandler(400, 'Please provide all required fields'));
   }
@@ -84,7 +82,7 @@ const deletepost = async(req,res,next) =>{
 }
 
 const updatepost = async(req,res,next) =>{
-  if (!req.user.isAdmin || req.user.id !== req.params.userId) {
+  if ( req.user.id !== req.params.userId) {
     return next(errorHandler(403, 'You are not allowed to update this post'));
   }
   try {
