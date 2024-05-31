@@ -183,7 +183,7 @@ const handleSubmit = async (e) => {
         }}
       />
       <Button type='submit' gradientDuoTone='purpleToPink'>
-        Update post
+        Cập nhật bài viết
       </Button>
       {publishError && (
         <Alert className='mt-5' color='failure'>
