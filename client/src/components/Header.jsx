@@ -56,7 +56,7 @@ const Header = () => {
       >
         {/* { theme === "light" ?  <img src="../public/logowhite.png" className="w-16 h-16 object-contain"/> : <img src="../public/images-removebg-preview.png" className="w-16 h-16object-contain"/>} */}
         <span className="px-2 py-1 bg-gradient-to-r from-blue-500 via-blue-400 to-violet-400 rounded-lg text-white">
-          Blog_web
+          Blogging-Dev
         </span>
       </Link>
       <form onSubmit={handleSubmit}>
