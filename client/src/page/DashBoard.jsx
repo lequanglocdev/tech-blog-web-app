@@ -5,6 +5,7 @@ import DashProfile from "../components/DashProfile";
 import DashPost from "../components/DashPost";
 import DashUsers from "../components/DashUsers";
 import DashBoardComponent   from "../components/DashBoardComponent";
+import CreatePost from "./CreatePost";
 const DashBoard = () => {
   const [tab, setTab] = useState("");
   const location = useLocation();
@@ -24,6 +25,8 @@ const DashBoard = () => {
       </div>
       {/* profile */}
       {tab === 'profile' && <DashProfile />}
+      {/* write */}
+      {tab === 'write' && <CreatePost/>}
       {/* post */}
       {tab === 'post' && <DashPost />}
       {/* users */}

@@ -13,8 +13,10 @@ const DashPost = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await fetch(`/api/post/getpost?userId=${createUser._id}`);
+        const res = await fetch(`/api/post/getpost`);
+        console.log(res)
         const data = await res.json();
+        console.log(data)
         if (res.ok) {
           setPost(data.posts);
           if (data.posts.length < 9) {
@@ -34,8 +36,9 @@ const DashPost = () => {
     const startIndex = post.length;
     try {
       const res = await fetch(
-        `/api/post/getpost?userId=${createUser._id}&startIndex=${startIndex}`
+        `/api/post/getpost?userId=${createUser?._id}&startIndex=${startIndex}`
       );
+      console.log(res)
       const data = await res.json();
       if (res.ok) {
         setPost((prev) => [...prev, ...data.posts]);
@@ -61,7 +64,7 @@ const DashPost = () => {
         console.log(data.message);
       } else {
         setPost((prev) =>
-          prev.filter((post) => post._id !== postIdToDelete)
+          prev.filter((post) => post?._id !== postIdToDelete)
         );
       }
     } catch (error) {
@@ -117,7 +120,7 @@ const DashPost = () => {
                       }}
                       className="font-medium text-red-500 hover:underline cursor-pointer"
                     >
-                      Delete
+                      Xóa
                     </span>
                   </Table.Cell>
                   <Table.Cell>
@@ -125,7 +128,7 @@ const DashPost = () => {
                       className="text-teal-500 hover:underline"
                       to={`/update-post/${post._id}`}
                     >
-                      <span>Edit</span>
+                      <span>Sửa</span>
                     </Link>
                   </Table.Cell>
                 </Table.Row>
@@ -137,12 +140,12 @@ const DashPost = () => {
               onClick={handleShowMore}
               className="w-full text-teal-500 self-center text-sm py-7"
             >
-              Show more
+               Xem thêm 
             </button>
           )}
         </>
       ) : (
-        <p>You have no posts yet!</p>
+        <p>Bạn không có bài viết nào hết</p>
       )}
         <Modal
         show={showModal}
@@ -155,14 +158,14 @@ const DashPost = () => {
           <div className="text-center">
             <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto" />
             <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">
-              Are you sure you want to delete your account?
+              Bạn có muốn xóa bài viết này không ?
             </h3>
             <div className="flex justify-center gap-4">
               <Button color="failure" onClick={handleDeletePost}>
-                Yes, I am sure
+              Vâng, tôi chắc chắn
               </Button>
               <Button color="gray" onClick={() => setShowModal(false)}>
-                No, cancel
+              Không, hủy bỏ
               </Button>
             </div>
           </div>

@@ -10,6 +10,7 @@ import { LuUserCircle2 } from "react-icons/lu";
 import { IoLogOutOutline } from "react-icons/io5";
 import { IoMdClipboard } from "react-icons/io";
 import { logoutSuccess } from "../redux/user/userSlice";
+import { MdEditNote } from "react-icons/md";
 const DashSideBar = () => {
   const [tab, setTab] = useState("");
   const dispatch = useDispatch();
@@ -42,19 +43,28 @@ const DashSideBar = () => {
     <Sidebar className="w-full wd:w-56">
       <Sidebar.Items>
         <Sidebar.ItemGroup className="flex flex-col gap-1">
-          
-        {createUser && createUser.isAdmin && (
-            <Link to='/dashboard?tab=dash'>
+          {createUser && createUser.isAdmin && (
+            <Link to="/dashboard?tab=dash">
               <Sidebar.Item
-                active={tab === 'dash' || !tab}
+                active={tab === "dash" || !tab}
                 icon={IoMdClipboard}
-                as='div'
+                as="div"
               >
                 Trang quản trị
               </Sidebar.Item>
             </Link>
           )}
-
+          {createUser && createUser.isAdmin && (
+            <Link to="/dashboard?tab=write">
+              <Sidebar.Item
+                active={tab === "write"}
+                icon={MdEditNote}
+                labelColor="dark"
+              > 
+                Viết bài
+              </Sidebar.Item>
+            </Link>
+          )}
           {createUser && createUser.isAdmin && (
             <Link to="/dashboard?tab=post">
               <Sidebar.Item
@@ -62,7 +72,7 @@ const DashSideBar = () => {
                 icon={FaFileInvoice}
                 labelColor="dark"
               >
-               Quản lý bài viết
+                Quản lý bài viết
               </Sidebar.Item>
             </Link>
           )}
@@ -85,7 +95,7 @@ const DashSideBar = () => {
               labelColor="dark"
               as="div"
             >
-                Cá nhân
+              Cá nhân
             </Sidebar.Item>
           </Link>
           <Sidebar.Item
@@ -94,7 +104,7 @@ const DashSideBar = () => {
             labelColor="dark"
             onClick={handleLogout}
           >
-            Log out
+            Đăng xuất
           </Sidebar.Item>
         </Sidebar.ItemGroup>
       </Sidebar.Items>

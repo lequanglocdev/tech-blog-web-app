@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom';
-
+import { useSelector } from "react-redux";
 const PostCard = ({post}) => {
+  const { createUser } = useSelector((state) => state.user);
+  
   return (
     <div className='group relative w-full border border-teal-500 hover:border-2 h-[400px] overflow-hidden rounded-lg sm:w-[430px] transition-all'>
       <Link to={`/post/${post.slug}`}>
@@ -16,17 +18,21 @@ const PostCard = ({post}) => {
         <span className='italic text-sm'>{post.category}</span>
         <Link
           to={`/post/${post.slug}`}
-          className='z-10 group-hover:bottom-16 absolute bottom-[-200px] left-0 right-0 border border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white transition-all duration-300 text-center py-2 rounded-md !rounded-tl-none m-2'
+          className={`z-10 absolute left-0 right-0 border border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white transition-all duration-300 text-center py-2 rounded-md !rounded-tl-none m-2 ${
+            createUser?.isAdmin ? "group-hover:bottom-16 bottom-[-200px]" : "group-hover:bottom-4 bottom-[-200px]"
+          }`}
         >
           Đọc ngay
          
         </Link>
-        <Link
-          to={`/update-post/${post._id}`}
-          className='z-10 group-hover:bottom-0 absolute bottom-[-200px] left-0 right-0 border border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white transition-all duration-300 text-center py-2 rounded-md !rounded-tl-none m-2'
-        >
-          Sửa bài viết
-        </Link>
+       {createUser && createUser.isAdmin && (
+         <Link
+         to={`/update-post/${post._id}`}
+         className='z-10 group-hover:bottom-0 absolute bottom-[-200px] left-0 right-0 border border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white transition-all duration-300 text-center py-2 rounded-md !rounded-tl-none m-2'
+       >
+         Sửa bài viết
+       </Link>
+       )}
        
       </div>
     </div>

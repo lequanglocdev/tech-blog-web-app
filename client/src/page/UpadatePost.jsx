@@ -132,7 +132,7 @@ const handleSubmit = async (e) => {
           }
           value={formData.category}
         >
-          <option value='uncategorized'>Select a category</option>
+          <option value='uncategorized'>Chọn thể loại</option>
           <option value='javascript'>JavaScript</option>
           <option value='reactjs'>React.js</option>
           <option value='nextjs'>Next.js</option>

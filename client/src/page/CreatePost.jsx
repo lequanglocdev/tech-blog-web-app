@@ -26,7 +26,7 @@ const CreatePost = () => {
 
   const handleUploadImage = () => {
     if (!file) {
-      setImageUploadError("Please select an image");
+      setImageUploadError("Vui lòng chọn một hình ảnh");
       return;
     }
     setImageUploadError(null);
@@ -94,13 +94,13 @@ const CreatePost = () => {
   };
 
   return (
-    <div className="p-2 max-w-3xl mx-auto min-h-screen">
-      <h1 className="text-center text-3xl my-4 font-semibold">Create a post</h1>
+    <div className="p-2 w-[900px] mx-auto min-h-screen sm: max-w-3xl">
+      <h1 className="text-center text-3xl my-4 font-semibold">Tạo một bài viết</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <TextInput
             type="text"
-            placeholder="Title"
+            placeholder="Tiêu đề"
             required
             id="title"
             className="flex-1"
@@ -111,6 +111,7 @@ const CreatePost = () => {
               setFormData({ ...formData, category: e.target.value })
             }
           >
+            <option value='uncategorized'>Chọn thể loại</option>
             <option value="nodejs">NodeJS</option>
             <option value="javascript">JavaScript</option>
             <option value="reactjs">ReactJS</option>
@@ -140,7 +141,7 @@ const CreatePost = () => {
                 />
               </div>
             ) : (
-              "Upload Image"
+              "Tải ảnh"
             )}
           </Button>
         </div>
@@ -157,14 +158,14 @@ const CreatePost = () => {
         <ReactQuill
          
           theme="snow"
-          placeholder="Write something..."
+          placeholder="Viết bài"
           className="h-60 mb-12"
           required
           onChange={handleQuillChange}
         />
 
         <Button type="submit" gradientDuoTone="purpleToPink">
-          Publish
+            Tạo
         </Button>
         {publishError && (
           <Alert className="mt-5" color="failure">

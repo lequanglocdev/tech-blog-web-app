@@ -4,6 +4,7 @@ import { Alert, Button, Label, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthGg from "../components/AuthGg";
+import image from "../../public/blog.png"
 const Register = () => {
   const [formData, setFormData] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
@@ -50,7 +51,7 @@ const Register = () => {
         <div className="flex-1">
           <Link>
             <img
-              src="https://nqwebdesign.com/wp-content/uploads/2020/01/blog-icon.png"
+              src={image}
               className="w-52"
             />
           </Link>

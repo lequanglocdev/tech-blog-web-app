@@ -112,7 +112,7 @@ const DashUsers = () => {
                       }}
                       className="font-medium text-red-500 hover:underline cursor-pointer"
                     >
-                      Delete
+                      Xóa
                     </span>
                   </Table.Cell>
                 </Table.Row>
@@ -124,12 +124,12 @@ const DashUsers = () => {
               onClick={handleShowMore}
               className="w-full text-teal-500 self-center text-sm py-7"
             >
-              Show more
+              Xem thêm
             </button>
           )}
         </>
       ) : (
-        <p>You have no posts yet!</p>
+        <p>Bạn chưa có bài viết nào!</p>
       )}
       <Modal
         show={showModal}
@@ -142,14 +142,14 @@ const DashUsers = () => {
           <div className="text-center">
             <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto" />
             <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">
-              Are you sure you want to delete your account?
+            Bạn có chắc chắn muốn xóa tài thành viên này không ?
             </h3>
             <div className="flex justify-center gap-4">
               <Button color="failure" onClick={handleDeletePost}>
-                Yes, I am sure
+               Có, tôi chắc
               </Button>
               <Button color="gray" onClick={() => setShowModal(false)}>
-                No, cancel
+                Không, hủy bỏ
               </Button>
             </div>
           </div>

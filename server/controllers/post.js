@@ -4,7 +4,7 @@ const { errorHandler } = require("../utils/error");
 const create =async (req,res,next) =>{
   
   if (!req.body.title || !req.body.content) {
-    return next(errorHandler(400, 'Please provide all required fields'));
+    return next(errorHandler(400, 'Vui lòng điền đủ thông tin bắt buộc'));
   }
   const slug = req.body.title
     .split(' ')

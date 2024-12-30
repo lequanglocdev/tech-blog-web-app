@@ -20,7 +20,7 @@ const CommentSection = ({postId}) => {
       return;
     }
     try {
-      const res = await fetch("/api/comment/create", {
+      const res = await fetch("/api/comment/create/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

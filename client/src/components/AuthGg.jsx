@@ -44,7 +44,7 @@ export default function AuthGg() {
       onClick={handleGoogleClick}
     >
       <AiFillGoogleCircle className="w-6 h-6 mr-2" />
-      Continue with Google
+      Đăng nhập với Google
     </Button>
   );
 }

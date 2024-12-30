@@ -80,7 +80,7 @@ const Comment = ({ comment,onLike, onEdit, onDelete  }) => {
                 gradientDuoTone='purpleToBlue'
                 onClick={handleSave}
               >
-                Save
+                Lưu
               </Button>
               <Button
                 type='button'
@@ -89,7 +89,7 @@ const Comment = ({ comment,onLike, onEdit, onDelete  }) => {
                 outline
                 onClick={() => setIsEditing(false)}
               >
-                Cancel
+                Xóa
               </Button>
             </div>
           </>

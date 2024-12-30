@@ -15,10 +15,10 @@ const Home = () => {
   return (
     <div>
       <div className="flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto ">
-        <h1 className="text-3xl font-bold lg:text-6xl">Chào mừng bạn đến với Blog web</h1>
+        <h1 className="text-3xl font-bold lg:text-6xl">Chào mừng bạn đến với Blogging Dev</h1>
         <p className="text-gray-500 text-xs sm:text-lg">
-          Nơi đây bạn sẽ tìm thấy một loạt các bài viết và hướng dẫn về các chủ
-          đề như phát triển web, kỹ thuật phần mềm và ngôn ngữ lập trình.
+          Nơi đây bạn sẽ tìm thấy một loạt các bài viết và hướng dẫn chia sẻ về kiến thức
+          công nghê kỹ thuật phần mềm và ngôn ngữ lập trình.
         </p>
         <Link
           to="/search"

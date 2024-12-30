@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { loginError, loginStart, loginSuccess } from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import AuthGg from "../components/AuthGg";
+import image from "../../public/blog.png"
 const Login = () => {
   const [formData, setFormData] = useState({});
   const { loading, error: errorMessage } = useSelector((state) => state.user);
@@ -48,7 +49,7 @@ const Login = () => {
         <div className="flex-1">
           <Link to="">
             <img
-              src="https://nqwebdesign.com/wp-content/uploads/2020/01/blog-icon.png"
+              src={image}
               className="w-48"
             />
           </Link>

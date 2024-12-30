@@ -11,7 +11,6 @@ import {
 import { app } from "../firebase";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
   updateStart,
@@ -97,7 +96,7 @@ const DashProfile = () => {
     setUpdateUserError(null);
     setUpdateUserSuccess(null);
     if (Object.keys(formData).length === 0) {
-      setUpdateUserError("No changes made");
+      setUpdateUserError("Không có thay đổi nào được thực hiện");
       return;
     }
     if (imageFileUploading) {
@@ -121,7 +120,7 @@ const DashProfile = () => {
         setUpdateUserError(data.message);
       } else {
         dispatch(updateSuccess(data));
-        setUpdateUserSuccess("User's profile updated successfully");
+        setUpdateUserSuccess("Hồ sơ của bạn đã được cập nhật thành công");
       }
     } catch (error) {
       dispatch(updateFail(error.message));
@@ -211,7 +210,7 @@ const DashProfile = () => {
         <TextInput
           type="text"
           id="username"
-          placeholder="username"
+          placeholder="nhập tên"
           defaultValue={createUser.username}
           onChange={handleChange}
         />
@@ -225,7 +224,7 @@ const DashProfile = () => {
         <TextInput
           type="password"
           id="password"
-          placeholder="password"
+          placeholder="mật khẩu"
           onChange={handleChange}
         />
         <Button
@@ -235,19 +234,9 @@ const DashProfile = () => {
           disabled={loading || imageFileUploading}
         >
         
-          {loading ? 'Loading...' : 'Cập nhật thông tin'}
+          {loading ? 'Đang tải...' : 'Cập nhật thông tin'}
         </Button>
-        {createUser.isAdmin && (
-          <Link to={'/create-post'}>
-            <Button
-              type='button'
-              gradientDuoTone='purpleToPink'
-              className='w-full'
-            >
-             <span className="text-base"> Tạo một bài viết</span>
-            </Button>
-          </Link>
-        )}
+       
       </form>
       <div className="text-red-500 flex justify-between mt-5">
         <span onClick={() => setShowModal(true)} className="cursor-pointer">Xóa tài khoản</span>
